@@ -1,0 +1,44 @@
+[
+  {
+    "order_no": "00124568",
+    "customer": {
+      "name": "Salman Rushdie",
+      "email": "srushdie@gmail.com",
+      "phone": "+4915166184600"
+    },
+    "item": {
+      "title": "VOX AC30",
+      "category": "amplifiers"
+    },
+    "status": "in process",
+    "target_date": "07/09/2022"
+  },
+  {
+    "order_no": "03124368",
+    "customer": {
+      "name": "Mick Harvey",
+      "email": "mharvey01@gmail.com",
+      "phone": "+4915134164620"
+    },
+    "item": {
+      "title": "Fender Jaguar",
+      "category": "guitars"
+    },
+    "status": "in process",
+    "target_date": "10/09/2022"
+  },
+  {
+    "order_no": "23424161",
+    "customer": {
+      "name": "Jimmy Ostenberg",
+      "email": "mharvey01@gmail.com",
+      "phone": "+4915134164620"
+    },
+    "item": {
+      "title": "Neumann U67",
+      "category": "microphones"
+    },
+    "status": "completed",
+    "target_date": ""
+  }
+]

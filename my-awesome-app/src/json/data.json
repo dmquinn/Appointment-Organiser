@@ -1,6 +1,6 @@
 [
   {
-    "order_no": "00124568",
+    "orderNo": "00124568",
     "customer": {
       "name": "Salman Rushdie",
       "email": "srushdie@gmail.com",
@@ -11,10 +11,10 @@
       "category": "amplifiers"
     },
     "status": "in process",
-    "target_date": "07/09/2022"
+    "targetDate": "07/09/2022"
   },
   {
-    "order_no": "03124368",
+    "orderNo": "03124368",
     "customer": {
       "name": "Mick Harvey",
       "email": "mharvey01@gmail.com",
@@ -25,10 +25,10 @@
       "category": "guitars"
     },
     "status": "in process",
-    "target_date": "10/09/2022"
+    "targetDate": "10/09/2022"
   },
   {
-    "order_no": "23424161",
+    "orderNo": "23424161",
     "customer": {
       "name": "Jimmy Ostenberg",
       "email": "mharvey01@gmail.com",
@@ -39,6 +39,34 @@
       "category": "microphones"
     },
     "status": "completed",
-    "target_date": ""
+    "targetDate": ""
+  },
+  {
+    "orderNo": "22326663",
+    "customer": {
+      "name": "Lias Saoudi",
+      "email": "lsaoudi@hotmail.com",
+      "phone": "+49154442645600"
+    },
+    "item": {
+      "title": "Gibson SG",
+      "category": "guitars"
+    },
+    "status": "in progress",
+    "targetDate": "10/10/2022"
+  },
+  {
+    "orderNo": "33312369",
+    "customer": {
+      "name": "Bert Vonnegut",
+      "email": "bvom99@hotmail.com",
+      "phone": "+49151765439"
+    },
+    "item": {
+      "title": "Novation Zero MKii",
+      "category": "other"
+    },
+    "status": "in progress",
+    "targetDate": "21/10/2022"
   }
 ]

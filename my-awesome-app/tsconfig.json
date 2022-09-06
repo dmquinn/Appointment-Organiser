@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es2020",
     "target": "es2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["es5", "es6", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,7 +28,8 @@
     "jest.setup.ts",
     "jest.config.js",
     "src/__tests__/pages/test-utils.ts",
-    "src/utils/test-utils/test-utils.js"
+    "src/utils/test-utils/test-utils.js",
+    "src/pages/[slug].js"
   ],
   "exclude": ["node_modules"],
   "ts-node": {

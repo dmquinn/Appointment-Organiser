@@ -109,6 +109,10 @@
   margin-left: 0.5rem;
 }
 
+.ant-table-row {
+  background-color: red !important;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

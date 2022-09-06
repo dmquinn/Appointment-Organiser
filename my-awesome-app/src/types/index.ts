@@ -10,5 +10,6 @@ export type DataItem = {
     category: string;
   };
   status: string;
-  targetDate: string | Date;
+  targetDate: string;
+  key: string | number;
 };

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import {
+  DatePicker,
   Form,
   Input,
-  InputNumber,
   Popconfirm,
   Table,
   Tag,
   Typography,
 } from "antd";
 import { TableProps } from "antd/lib/table";
-// import Router from "next/router";
-
+import moment from "moment";
 import data from "../json/data.json";
 import "antd/dist/antd.css";
 import { DataItem } from "../types";
@@ -20,8 +19,8 @@ import { CaretRightOutlined } from "@ant-design/icons";
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
-  title: any;
-  inputType: "number" | "text";
+  title: string;
+  inputType: "datePicker" | "text";
   record: DataItem;
   index: number;
   children: React.ReactNode;
@@ -37,11 +36,9 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
-
   return (
     <td {...restProps}>
-      {editing ? (
+      {editing && inputType === "text" ? (
         <Form.Item
           name={dataIndex}
           style={{ margin: 0 }}
@@ -52,8 +49,10 @@ const EditableCell: React.FC<EditableCellProps> = ({
             },
           ]}
         >
-          {inputNode}
+          <Input />
         </Form.Item>
+      ) : editing && inputType === "datePicker" ? (
+        <DatePicker defaultValue={moment(record.targetDate)} />
       ) : (
         children
       )}
@@ -62,7 +61,6 @@ const EditableCell: React.FC<EditableCellProps> = ({
 };
 
 const App = () => {
-  // const [isLoading, setIsLoading] = useState(false);
   const [displayData, setDisplayData] = useState(data);
   const [pagination, setPagination] = useState({});
   const [form] = Form.useForm();
@@ -71,7 +69,13 @@ const App = () => {
   const isEditing = (record: DataItem) => record.orderNo === editingKey;
 
   const edit = (record: Partial<DataItem> & { key: React.Key }) => {
-    form.setFieldsValue({ name: "", age: "", address: "", ...record });
+    form.setFieldsValue({
+      item: "",
+      customer: "",
+      status: "",
+      targetDate: "",
+      ...record,
+    });
     setEditingKey(record.orderNo);
   };
 
@@ -108,7 +112,7 @@ const App = () => {
       title: "Order Number",
       dataIndex: "orderNo",
       key: "orderNo",
-      width: "25%",
+      width: "20%",
     },
     {
       title: "Item",
@@ -118,23 +122,24 @@ const App = () => {
       editable: "true",
     },
     {
-      title: "customer",
+      title: "Customer",
       dataIndex: ["customer", "name"],
       width: "20%",
       key: "customer",
       editable: "true",
     },
     {
-      title: "status",
+      title: "Status",
       dataIndex: "status",
       filters: [
-        { text: "In Progress", value: "In Process" },
-        { text: "Completed", value: "Completed" },
-        { text: "Rejected", value: "Rejected" },
+        { text: "In Process", value: "in process" },
+        { text: "Completed", value: "completed" },
+        { text: "Rejected", value: "rejected" },
       ],
+      onFilter: (value: string, record) => record.status.includes(value),
       width: "20%",
       editable: "true",
-      render: (value, record) => (
+      render: (value) => (
         <Tag
           color={
             value === "completed"
@@ -155,12 +160,15 @@ const App = () => {
       width: "20%",
       key: "targetDate",
       editable: "true",
+      render: (date: string) => !!date && moment(date).format("DD/MM/YYYY"),
+      sorter: (a, b) =>
+        moment(a.targetDate).unix() - moment(b.targetDate).unix(),
     },
     {
-      title: "operation",
+      title: "Operation",
       dataIndex: "operation",
       key: "operation",
-      render: (_: any, record: DataItem) => {
+      render: (_, record: DataItem) => {
         const editable = isEditing(record);
         return editable ? (
           <span>
@@ -189,7 +197,7 @@ const App = () => {
       dataIndex: "link",
       width: "8%",
       key: "link",
-      render: (_: any, record: DataItem) => {
+      render: (_, record: DataItem) => {
         return (
           <span
             onClick={() => {
@@ -197,6 +205,7 @@ const App = () => {
                 Router.push(`${record.orderNo}`);
               }
             }}
+            className="proceed"
           >
             <CaretRightOutlined />
           </span>
@@ -212,7 +221,7 @@ const App = () => {
       ...col,
       onCell: (record: DataItem) => ({
         record,
-        inputType: col.dataIndex === "age" ? "number" : "text",
+        inputType: col.dataIndex === "targetDate" ? "datePicker" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -222,26 +231,8 @@ const App = () => {
   const handleTableChange: TableProps<any>["onChange"] = (pagination) => {
     setPagination(pagination);
   };
-
   return (
     <div>
-      {/* <Table
-        columns={columns}
-        dataSource={displayData}
-        loading={isLoading}
-        onChange={handleTableChange}
-        pagination={pagination}
-        rowKey="orderNo"
-        onRow={(record: DataItem) => {
-          return {
-            onClick: () => {
-              if (record?.orderNo) {
-                Router.push(`${record.orderNo}`);
-              }
-            },
-          };
-        }}
-      /> */}
       <Form form={form} component={false}>
         <Table
           components={{

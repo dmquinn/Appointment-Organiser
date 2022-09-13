@@ -25,6 +25,7 @@ export const counterSlice = createSlice({
     },
   },
 });
+
 // Here we are just exporting the actions from this slice, so that we can call them anywhere in our app.
 export const { increment, decrement } = counterSlice.actions;
 

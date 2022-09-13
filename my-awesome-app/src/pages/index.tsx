@@ -13,8 +13,10 @@ import moment from "moment";
 import data from "../json/data.json";
 import "antd/dist/antd.css";
 import { DataItem } from "../types";
-import Router from "next/router";
+// import Router from "next/router";
 import { CaretRightOutlined } from "@ant-design/icons";
+import Link from "next/link";
+import { selectData } from "store/reducers/fetchDataSlice";
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
@@ -61,13 +63,11 @@ const EditableCell: React.FC<EditableCellProps> = ({
 };
 
 const App = () => {
-  const [displayData, setDisplayData] = useState(data);
+  const [displayData, setDisplayData] = useState(selectData());
   const [pagination, setPagination] = useState({});
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
-
   const isEditing = (record: DataItem) => record.orderNo === editingKey;
-
   const edit = (record: Partial<DataItem> & { key: React.Key }) => {
     form.setFieldsValue({
       item: "",
@@ -199,15 +199,10 @@ const App = () => {
       key: "link",
       render: (_, record: DataItem) => {
         return (
-          <span
-            onClick={() => {
-              if (record?.orderNo) {
-                Router.push(`${record.orderNo}`);
-              }
-            }}
-            className="proceed"
-          >
-            <CaretRightOutlined />
+          <span className="proceed">
+            <Link href={`/${record.orderNo}`} passHref>
+              <CaretRightOutlined />
+            </Link>
           </span>
         );
       },
@@ -252,5 +247,14 @@ const App = () => {
     </div>
   );
 };
+
+// export const getStaticProps = async () => {
+//   const allAppointments = await getAllAppointments();
+//   return {
+//     props: {
+//       appointments: allAppointments,
+//     },
+//   };
+// };
 
 export default App;

@@ -8,13 +8,13 @@ export const fetchDataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    getData: () => {
+    getAllData: () => {
       return initialState;
     },
   },
 });
 
-export const { getData } = fetchDataSlice.actions;
+export const { getAllData } = fetchDataSlice.actions;
 
 export const selectData = () => data;
 

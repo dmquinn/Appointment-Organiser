@@ -13,7 +13,6 @@ import moment from "moment";
 import data from "../json/data.json";
 import "antd/dist/antd.css";
 import { DataItem } from "../types";
-// import Router from "next/router";
 import { CaretRightOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { selectData } from "store/reducers/fetchDataSlice";
@@ -37,30 +36,28 @@ const EditableCell: React.FC<EditableCellProps> = ({
   index,
   children,
   ...restProps
-}) => {
-  return (
-    <td {...restProps}>
-      {editing && inputType === "text" ? (
-        <Form.Item
-          name={dataIndex}
-          style={{ margin: 0 }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-      ) : editing && inputType === "datePicker" ? (
-        <DatePicker defaultValue={moment(record.targetDate)} />
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
+}) => (
+  <td {...restProps}>
+    {editing && inputType === "text" ? (
+      <Form.Item
+        name={dataIndex}
+        style={{ margin: 0 }}
+        rules={[
+          {
+            required: true,
+            message: `Please Input ${title}!`,
+          },
+        ]}
+      >
+        <Input onChange={(e) => console.log(e.target.value)} />
+      </Form.Item>
+    ) : editing && inputType === "datePicker" ? (
+      <DatePicker defaultValue={moment(record.targetDate)} />
+    ) : (
+      children
+    )}
+  </td>
+);
 
 const App = () => {
   const [displayData, setDisplayData] = useState(selectData());
@@ -247,14 +244,5 @@ const App = () => {
     </div>
   );
 };
-
-// export const getStaticProps = async () => {
-//   const allAppointments = await getAllAppointments();
-//   return {
-//     props: {
-//       appointments: allAppointments,
-//     },
-//   };
-// };
 
 export default App;

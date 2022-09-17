@@ -1,9 +1,9 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import fetchDataReducer from "./reducers/fetchDataSlice";
+import { fetchDataSlice } from "./reducers/fetchDataSlice";
 
 export const store = configureStore({
   reducer: {
-    data: fetchDataReducer,
+    [fetchDataSlice.name]: fetchDataSlice.reducer,
   },
 });
 

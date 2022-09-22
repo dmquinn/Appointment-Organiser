@@ -1,12 +1,19 @@
-import { Layout } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Layout, Menu } from "antd";
 import React, { useEffect, useState } from "react";
 import { selectData } from "store/reducers/fetchDataSlice";
+// import moment from "moment";
 import Comment from "../components/Comment";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const App: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const [appointment, setAppointment] = useState(null);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
   useEffect(() => {
     const appt = selectData();
     const newAppt = appt.filter(
@@ -14,6 +21,8 @@ const App: React.FC = () => {
     );
     setAppointment(newAppt[0]);
   }, []);
+  appointment && const displayAppt = Object.values(appointment);
+
 
   return (
     <Layout>
@@ -27,7 +36,27 @@ const App: React.FC = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="logo" />
+        {appointment ? (
+          <div style={{ width: 256 }}>
+            <Button
+              type="primary"
+              onClick={toggleCollapsed}
+              style={{ marginBottom: 16 }}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+            <Menu
+              defaultSelectedKeys={["1"]}
+              defaultOpenKeys={["sub1"]}
+              mode="inline"
+              theme="dark"
+              inlineCollapsed={collapsed}
+              items={Object.values(appointment)}
+            />
+          </div>
+        ) : (
+          <div />
+        )}{" "}
       </Sider>
       <Layout>
         <Header

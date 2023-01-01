@@ -1,5 +1,5 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu } from "antd";
+import { Button, Layout, Menu, Icon } from "antd";
 import React, { useEffect, useState } from "react";
 import { selectData } from "store/reducers/fetchDataSlice";
 // import moment from "moment";
@@ -10,7 +10,6 @@ const { Header, Content, Footer, Sider } = Layout;
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [appointment, setAppointment] = useState(null);
-
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
@@ -21,55 +20,41 @@ const App: React.FC = () => {
     );
     setAppointment(newAppt[0]);
   }, []);
-  appointment && const displayAppt = Object.values(appointment);
-
+  appointment && console.log(appointment);
 
   return (
     <Layout>
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+        collapsible
+        collapsed={collapsed}
+        onCollapse={() => setCollapsed(!collapsed)}
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          left: 0,
+          padding: "10px",
         }}
       >
-        {appointment ? (
-          <div style={{ width: 256 }}>
-            <Button
-              type="primary"
-              onClick={toggleCollapsed}
-              style={{ marginBottom: 16 }}
-            >
-              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            </Button>
-            <Menu
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              mode="inline"
-              theme="dark"
-              inlineCollapsed={collapsed}
-              items={Object.values(appointment)}
-            />
-          </div>
-        ) : (
-          <div />
-        )}{" "}
+        <div className="logo" />
+        <ul
+          style={{
+            color: "white",
+            listStyle: "none",
+            padding: "30px",
+            border: "1px solid white",
+            borderRadius: "50px",
+          }}
+        >
+          <li>{appointment?.customer?.name}</li>
+          <li>{appointment?.customer?.phone}</li>
+          <li>{appointment?.customer?.email}</li>
+        </ul>
       </Sider>
       <Layout>
-        <Header
-          className="site-layout-sub-header-background"
-          style={{ padding: 0 }}
-        />
-        <Content style={{ margin: "24px 16px 0" }}>
-          <div
-            className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}
-          >
-            <Comment />
-          </div>
+        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+          <p>{appointment?.item.title}</p>
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Ant Design ©2018 Created by Ant UED

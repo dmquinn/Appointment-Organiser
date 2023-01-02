@@ -48,12 +48,15 @@
     "eslint-config-react-app": "^7.0.0",
     "inga-ui": "^1.0.12",
     "moment": "^2.29.4",
+    "mongodb": "^4.13.0",
     "next": "12.0.10",
     "react": "17.0.2",
+    "react-calendar": "^4.0.0",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.6",
     "reqwest": "^2.0.5",
     "sass": "^1.49.7",
+    "scheduler-calendar": "^4.0.0",
     "xhr2": "^0.2.1"
   },
   "devDependencies": {

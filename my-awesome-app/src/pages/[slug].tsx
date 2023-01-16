@@ -1,7 +1,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu, Icon } from "antd";
+import { Button, Layout, Menu } from "antd";
 import React, { useEffect, useState } from "react";
-import { selectData } from "store/reducers/fetchDataSlice";
 // import moment from "moment";
 import Comment from "../components/Comment";
 
@@ -14,11 +13,11 @@ const App: React.FC = () => {
     setCollapsed(!collapsed);
   };
   useEffect(() => {
-    const appt = selectData();
-    const newAppt = appt.filter(
-      (item) => item.orderNo === window.location.pathname.split("/")[1]
-    );
-    setAppointment(newAppt[0]);
+    // const appt = selectData();
+    // const newAppt = appt.filter(
+    //   (item) => item.orderNo === window.location.pathname.split("/")[1]
+    // );
+    // setAppointment(newAppt[0]);
   }, []);
   appointment && console.log(appointment);
 

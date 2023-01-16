@@ -1,37 +1,66 @@
-import Homepage from "./Homepage";
+import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import { InferGetServerSidePropsType } from "next";
+import { WithId, Document } from "mongodb";
+import { useEffect } from "react";
+import Homepage from "./Homepage";
+type Props = {
+  posts: [Order];
+};
 
-export async function getServerSideProps(context) {
+type Order = {
+  _id: String | Number;
+  orderNo: String | Number;
+  customer: {
+    name: { type: String };
+    email: { type: String };
+    phone: { type: String };
+  };
+  item: {
+    title: { type: String };
+    category: { type: String };
+  };
+  status: { type: String };
+  targetDate: { type: String | Date };
+};
+export async function getServerSideProps() {
   try {
-    await clientPromise;
+    let response = await fetch("http://localhost:3000/api/getOrders");
+    let orders = await response.json();
+
     return {
-      props: { isConnected: true },
+      props: { orders: JSON.parse(JSON.stringify(orders)) },
     };
   } catch (e) {
     console.error(e);
-    return {
-      props: { isConnected: false },
-    };
   }
 }
 
-const App = ({
-  isConnected,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return (
-    <>
-      <Homepage />
-      {isConnected ? (
-        <h2 className="subtitle">You are connected to MongoDB</h2>
-      ) : (
-        <h2 className="subtitle">
-          You are NOT connected to MongoDB. Check the <code>README.md</code> for
-          instructions.
-        </h2>
-      )}
-    </>
-  );
-};
+export default function App({
+  orders,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const handleDeletePost = async (postId: string) => {
+    try {
+      let response = await fetch(
+        "http://localhost:3000/api/deletePost?id=" + postId,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      response = await response.json();
+      window.location.reload();
+    } catch (error) {
+      console.log("An error occurred while deleting ", error);
+    }
+  };
 
-export default App;
+  return (
+    <div className="container">
+      <Homepage orders={orders} />
+    </div>
+  );
+}

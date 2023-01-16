@@ -7,6 +7,7 @@ import {
   Table,
   Tag,
   Typography,
+  Button,
 } from "antd";
 import { TableProps } from "antd/lib/table";
 import moment from "moment";
@@ -15,8 +16,8 @@ import "antd/dist/antd.css";
 import { DataItem } from "../types";
 import { CaretRightOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { selectData } from "store/reducers/fetchDataSlice";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
+import AddModal from "./components/AddModal";
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
@@ -60,29 +61,11 @@ const EditableCell: React.FC<EditableCellProps> = ({
   </td>
 );
 
-const App = () => {
-  const [displayData, setDisplayData] = useState(selectData());
+const Homepage = ({ isConnected, orders }) => {
+  const [displayData, setDisplayData] = useState();
   const [pagination, setPagination] = useState({});
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
-
-  useEffect(() => {
-    const asyncGetOrders = async () => {
-      const { origin } = window.location;
-      const data = await fetch(origin + "/api/orders");
-      const orders = await data.json();
-      return orders;
-    };
-    if (window) {
-      asyncGetOrders()
-        .then((orders) => {
-          setDisplayData(orders);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
 
   const isEditing = (record: DataItem) => record.orderNo === editingKey;
   const edit = (record: Partial<DataItem> & { key: React.Key }) => {
@@ -95,11 +78,12 @@ const App = () => {
     });
     setEditingKey(record.orderNo);
   };
-
+  useEffect(() => {
+    setDisplayData(orders);
+  }, [orders]);
   const cancel = () => {
     setEditingKey("");
   };
-
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as DataItem;
@@ -243,10 +227,11 @@ const App = () => {
   const handleTableChange: TableProps<any>["onChange"] = (pagination) => {
     setPagination(pagination);
   };
+  const handleModal = () => {};
   return (
-    <div>
-      <Navbar />
-      <PlusCircleOutlined />
+    <div style={{ padding: "50px" }}>
+      {/* <Navbar /> */}
+      <AddModal />
       <Form form={form} component={false}>
         <Table
           components={{
@@ -257,7 +242,7 @@ const App = () => {
           onChange={handleTableChange}
           bordered
           rowKey="orderNo"
-          dataSource={displayData}
+          dataSource={orders}
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={pagination}
@@ -266,5 +251,4 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
+export default Homepage;

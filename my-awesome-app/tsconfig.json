@@ -1,40 +1,20 @@
 {
   "compilerOptions": {
-    "module": "es2020",
-    "target": "es2020",
-    "lib": ["es5", "es6", "dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./node_modules/@types"],
     "noEmit": true,
+    "incremental": true,
     "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": "src",
-    "paths": {
-      "test-utils": ["./utils/test-utils"]
-    },
-    "types": ["jest", "node", "react", "prettier", "next", "sass"]
+    "jsx": "preserve"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "jest.setup.ts",
-    "jest.config.js",
-    "src/__tests__/pages/test-utils.ts",
-    "src/utils/test-utils/test-utils.js",
-    "src/pages/[slug].js"
-  ],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "moduleTypes": {
-      "jest.config.ts": "cjs"
-    }
-  }
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/getOrders.js"],
+  "exclude": ["node_modules"]
 }

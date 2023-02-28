@@ -1,249 +1,82 @@
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate">
-    <img src="./public/favicon.ico" alt="Logo" width="80" height="80">
-  </a>
-
-  <h1 align="center">NextJS, Typescript, SASS, Redux Toolkit, Jest, React Testing Library, Prettier Boilerplate</h1>
-
-  <p align="center">
-     The Ultimate NextJS Template
-    <br />
-    <a href="https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate#readme"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://www.npmjs.com/package/nextjs-ts-boilerplate">View on npm</a>
-    ·
-    <a href="https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate/issues">Request Feature</a>
-  </p>
-</p>
-
-<a href="https://github.com/lucky-lore" target="_blank">
-<img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
-</a>
-<a href="https://www.npmjs.com/~lucky-lore" target="_blank">
-<img src=https://img.shields.io/badge/npm-%2324292e.svg?&style=for-the-badge&logo=npm&logoColor=red alt=npm style="margin-bottom: 5px;" />
-</a>
-<a href="https://linkedin.com/in/loretta-krasteva" target="_blank">
-<img src=https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
-</a>
-<a href="https://twitter.com/_luckylore" target="_blank">
-<img src=https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
-</a>
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation-and-setup">Installation and Setup</a></li>
-        <li>
-            <a href="#getting-started">Getting Started</a>
-            <ul>
-                <li><a href="#prerequisites">Prerequisites</a></li>
-            </ul>
-        </li>
-      </ul>
-    </li>
-    <li>
-        <a href="#usage">Usage</a>
-        <ul>
-            <li><a href="#scripts">Scripts</a></li>
-        </ul>
-    </li>
-    <li>
-      <a href="#project-status">Project Status</a>
-      <ul>
-        <li><a href="#current">Current</a></li>
-        <li><a href="#next-steps">Next Steps</a></li>
-      </ul>
-    </li>
-    <li><a href="#support-me">Support Me</a></li>
-    <li><a href="#roadmap">Deployment</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
-<!-- ABOUT THE PROJECT -->
-
-## About The Project
-
-As a professional developer that loves doing side projects in my free time, it just puts me off to think about having to spend a day or two just configuring my project rather than coding. Therefore I created the ultimate boilerplate project and with utmost pleasure and excitement I share it with all of you so that you can get started with coding right away!
-
-This is a starter template (boilerplate) project that uses NextJS, Typescript, SASS, Redux Toolkit, RTL (React Testing Library), Jest, ESlint, Prettier and Git Hooks (Husky). It is everything that you need to get started and has the most useful react scripts already added. Check <a href="#scripts">Scripts</a> for more information.
-
-It has the best linter rules to get started with, as well as the `eslint-plugin-jsx-a11y` accessibility plugin to write the best code possible. These are initial configurations that you are not bound to and can be customized to your liking. You can easily make your own configurations, change some of the used frameworks (you could swap SASS for MUI or some other styling framework that you love!).
-
-### Built With
-
-This section lists any major frameworks and tools that I used to build this boilerplate.
-
-- [React](https://reactjs.org/)
-- [NextJS](https://nextjs.org/)
-- [Typescript](https://www.typescriptlang.org/)
-- [SASS](https://sass-lang.com/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Jest](https://jestjs.io/)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Husky](https://typicode.github.io/husky/#/)
-- [Prettier](https://prettier.io/)
+## Example app using MongoDB
 
-<!-- GETTING STARTED -->
+[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
 
-## Getting Started
+If you want to learn more about MongoDB, visit the following pages:
 
-### Installation and Setup
+- [MongoDB Atlas](https://mongodb.com/atlas)
+- [MongoDB Documentation](https://docs.mongodb.com/)
 
-Alternatively, clone down the [repository](https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate).
+## Deploy your own
 
-You will need `node` and `npm` installed globally on your machine.
+Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-Installation:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
 
-`npm install`
+## How to use
 
-To Start Dev Server:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-`npm run dev`
+```bash
+npx create-next-app --example with-mongodb with-mongodb-app
+```
 
-To Visit App:
+```bash
+yarn create next-app --example with-mongodb with-mongodb-app
+```
 
-`localhost:3000`
+```bash
+pnpm create next-app --example with-mongodb with-mongodb-app
+```
 
-### Getting Started
+## Configuration
 
-#### Prerequisites
+### Set up a MongoDB database
 
-This is an example of how to list things you need to use the software and how to install them.
+Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-- onchange - used in the scripts to listen for changes in files and automatically format them for you.
-  ```sh
-  npm install -g onchange
-  ```
-- rimraf - needed in the `clean` script. It's used to bypass issues with removing `node_modules` in Windows.
-  ```sh
-  npm install -g rimraf
-  ```
+### Set up environment variables
 
-## Usage
+Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
 
-### Scripts
+```bash
+cp .env.local.example .env.local
+```
 
-I've added the following scripts for convenience. Feel free to modify them to your liking.
+Set each variable on `.env.local`:
 
-- `npm start`: Starts your production build. Requires you to run `npm run build` beforehand.
-- `npm run dev`: Starts the development server, initially formats all of your code and runs prettier watch mode.
-- `npm run build`: Build your code for production.
-- `npm run lint`: Runs ESlint to check and fix errors automatically. This script is used by Husky.
-- `npm run lint:fix`: Runs `lint` and fixes any found errors.
-- `npm run prettier`: Outputs prettier errors.
-- `npm run prettier:fix`: Fixes all prettier errors.
-- `npm run prettier-watch`: This script uses `onchange` to watch for any changed files and fixes them automatically.
-- `npm run format`: Formats all of your files based on both prettier and eslint configs.
-- `npm run prepare`: Prepares .husky
-- `npm run test`: Runs jest configuration.
-- `npm run test:watch`: Runs jest watch mode.
-- `npm run clean`: Removes node_modules and package-lock.json.
-- `npm run reinstall`: Creates a clean installation.
+- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
 
-### Git Hooks - Husky
+### Run Next.js in development mode
 
-Git Hooks are a really handy tool for automating tasks around git. I've initialized husky and added the following hook:
+```bash
+npm install
+npm run dev
 
-- `pre-commit` hook: Checks for eslint errors and fixes them automatically for you when you are commiting. Once it has finished its job, your commit is finished.
+# or
 
-Feel free to add more hooks. Read more about [husky](https://typicode.github.io/husky/#/).
+yarn install
+yarn dev
+```
 
-## Project Status
+Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
 
-### Current
+You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` environment variable.
 
-Completely configured boilerplate.
+When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
 
-## Support me
+## Deploy on Vercel
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/gbraad)
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/LoretaKrasteva?locale.x=en_GB)
+#### Deploy Your Local Project
 
-<!-- USAGE EXAMPLES -->
+To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
 
-## Deployment
+**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
 
-- `npm run build` - Builds the app for production. It correctly bundles React in production mode and optimizes the build for the best performance. Your app is ready to be deployed!
+#### Deploy from Our Template
 
-Once you have ran `npm run build`, you can run the production build locally with `npm start`.
+Alternatively, you can deploy using our template by clicking on the Deploy button below.
 
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [open issues](https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate/issues) for a list of proposed features (and known issues).
-
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See [LICENSE](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) for more information.
-
-<!-- CONTACT -->
-
-## Contact
-
-### Author
-
-<h1>Loretta Krasteva</h1>
-
-<a href="https://github.com/lucky-lore" target="_blank">
-<img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
-</a>
-<a href="https://www.npmjs.com/~lucky-lore" target="_blank">
-<img src=https://img.shields.io/badge/npm-%2324292e.svg?&style=for-the-badge&logo=npm&logoColor=red alt=npm style="margin-bottom: 5px;" />
-</a>
-<a href="https://linkedin.com/in/loretta-krasteva" target="_blank">
-<img src=https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
-</a>
-<a href="https://twitter.com/_luckylore" target="_blank">
-<img src=https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
-</a>
-
-Project Link: [nextjs-ts-rtl-jest-prettier-boilerplate](https://github.com/lucky-lore/nextjs-ts-rtl-jest-prettier-boilerplate)
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-
-Deep appreciation to my greatest assistant:
-
-- [Stack Overflow](https://stackoverflow.com/)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)

@@ -1,13 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  DatePicker,
-  Form,
-  Input,
-  Popconfirm,
-  Table,
-  Tag,
-  Typography,
-} from "antd";
+import { Form, Popconfirm, Table, Tag, Typography } from "antd";
 import { TableProps } from "antd/lib/table";
 import moment from "moment";
 import "antd/dist/reset.css";
@@ -22,48 +14,7 @@ import Navbar from "./Navbar";
 import AddModal from "./AddModal";
 import { useDispatch } from "react-redux";
 import { setOrders } from "../../redux/ordersSlice";
-
-interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
-  editing: boolean;
-  dataIndex: string;
-  title: string;
-  inputType: "datePicker" | "text";
-  record: DataType;
-  index: number;
-  children: React.ReactNode;
-}
-
-const EditableCell: React.FC<EditableCellProps> = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => (
-  <td {...restProps}>
-    {editing && inputType === "text" ? (
-      <Form.Item
-        name={dataIndex}
-        style={{ margin: 0 }}
-        rules={[
-          {
-            required: true,
-            message: `Please Input ${title}!`,
-          },
-        ]}
-      >
-        <Input onChange={(e) => console.log(e.target.value)} />
-      </Form.Item>
-    ) : editing && inputType === "datePicker" ? (
-      <DatePicker />
-    ) : (
-      children
-    )}
-  </td>
-);
+import { EditableCell } from "./EditableCell";
 
 const DataTable = ({ isConnected, loadOrders }) => {
   const [displayData, setDisplayData] = useState();
@@ -74,15 +25,15 @@ const DataTable = ({ isConnected, loadOrders }) => {
 
   const dispatch = useDispatch();
 
-  const onExpand = (_, { key }) =>
-    expandedKey === key ? setExpandedKey(null) : setExpandedKey(key);
+  // const onExpand = (_, { key }) =>
+  //   expandedKey === key ? setExpandedKey(null) : setExpandedKey(key);
   const isEditing = (record: DataType) => record._id === editingKey;
   const edit = (record: Partial<DataType> & { key: React.Key }) => {
     form.setFieldsValue({
-      // item: "",
-      // customer: "",
-      // status: "",
-      // targetDate: "",
+      item: "",
+      customer: "",
+      status: "",
+      targetDate: "",
       ...record,
     });
     //@ts-ignore

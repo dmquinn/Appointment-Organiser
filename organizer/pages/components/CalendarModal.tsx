@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useSelector } from "react-redux";
 import { selectOrders } from "../../redux/ordersSlice";
+import moment from "moment";
 
 interface Props {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -12,12 +13,12 @@ interface Props {
 
 const App: React.FC<Props> = ({ open, setOpen }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
+  // const [modalText, setModalText] = useState("Content of the modal");
   const [dates, setDates] = useState([]);
   const items = useSelector(selectOrders);
 
   const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
+    // setModalText("The modal will be closed after two seconds");
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
@@ -29,9 +30,6 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
     console.log("Clicked cancel button");
     setOpen(false);
   };
-  useEffect(() => {
-    console.log(items.orders);
-  }, [items]);
 
   return (
     <>
@@ -43,14 +41,18 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
         onCancel={handleCancel}
       >
         <Calendar
-          onDrillDown={({ activeStartDate, view }) =>
-            console.log("Drilled down to: ", activeStartDate, view)
-          }
-          onChange={() => console.log("change")}
-          tileContent={({ date, view }) =>
-            view === "month" && date.getDay() === 0 ? "s" : null
-          }
-        />{" "}
+          tileClassName={({ date, view }) => {
+            if (
+              items.orders[0].find(
+                (x: { targetDate: string }) =>
+                  x.targetDate === moment(date).format("YYYY-MM-DD")
+              )
+            ) {
+              return "highlight";
+            }
+          }}
+          tileDisabled={({ date }) => date.getDay() === 0}
+        ></Calendar>
       </Modal>
     </>
   );

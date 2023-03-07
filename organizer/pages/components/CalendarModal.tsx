@@ -41,7 +41,7 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
         onCancel={handleCancel}
       >
         <Calendar
-          tileClassName={({ date, view }) => {
+          tileClassName={({ date }) => {
             if (
               items.orders[0].find(
                 (x: { targetDate: string }) =>
@@ -49,6 +49,17 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
               )
             ) {
               return "highlight";
+            }
+          }}
+          tileContent={({ date }) => {
+            console.log(date);
+            if (
+              items.orders[0].find(
+                (x: { targetDate: string }) =>
+                  x.targetDate === moment(date).format("YYYY-MM-DD")
+              )
+            ) {
+              // return <p>{date}</p>;
             }
           }}
           tileDisabled={({ date }) => date.getDay() === 0}

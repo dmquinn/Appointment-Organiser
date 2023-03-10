@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import React, { useState } from "react";
+import { Layout, Menu, Breadcrumb, Space } from "antd";
 import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";
+import { selectOrders } from "../redux/ordersSlice";
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 export const SinglePage = () => {
-  const [singleItem, setSingleItem] = useState(null);
   const router = useRouter();
-  const { _id, customer, item } = router.query;
-  console.log(router.query);
-  useEffect(() => {
-    if (_id) getOrder();
-  }, [_id]);
-  const getOrder = async () => {
-    const response = await fetch(
-      `http://localhost:3000/api/getSingleOrder/${_id}`
-    );
-    const data = await response.json();
-    setSingleItem(data);
-  };
-  singleItem && console.log("SINGLE", singleItem);
+  const { _id } = router.query;
+  const orders = useSelector(selectOrders);
+  const singleOrder = orders.orders[0].filter((item) => item._id === _id);
+  const { customer, item } = singleOrder;
+
+  customer && console.log(customer);
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible style={{ backgroundColor: "orange" }}>

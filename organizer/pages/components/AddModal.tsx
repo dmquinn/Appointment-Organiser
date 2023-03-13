@@ -25,6 +25,7 @@ const AddModal: React.FC<Props> = ({ refresh }) => {
   };
   const onFinish = (values: any) => {
     console.log("Success:", values);
+    refresh(undefined);
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
@@ -37,7 +38,6 @@ const AddModal: React.FC<Props> = ({ refresh }) => {
   const handleOk = async (e: any) => {
     e.preventDefault();
     if (data) {
-      console.log(data);
       try {
         let response = await fetch("http://localhost:3000/api/addOrder", {
           method: "POST",
@@ -51,8 +51,8 @@ const AddModal: React.FC<Props> = ({ refresh }) => {
         });
         response = await response.json();
         setData(null);
+        refresh(undefined);
         setOpen(false);
-        refresh(null);
       } catch (errorMessage: any) {
         setError(errorMessage);
       }

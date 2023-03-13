@@ -2,7 +2,6 @@ import { ObjectID } from "bson";
 import clientPromise from "../../lib/mongodb";
 
 export default async (req, res) => {
-  console.log("REQ", req.body);
   const { customer, status, item, targetDate, comment } = req.body.row;
   const { key } = req.body;
   try {

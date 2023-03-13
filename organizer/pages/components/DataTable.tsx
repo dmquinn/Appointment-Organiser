@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Popconfirm, Table, Tag, Typography } from "antd";
+import { Form, Popconfirm, Spin, Table, Tag, Typography } from "antd";
 import { TableProps } from "antd/lib/table";
 import moment from "moment";
 import "antd/dist/reset.css";
@@ -204,38 +204,44 @@ const DataTable = ({ isConnected, loadOrders }) => {
     <div style={{ padding: "50px" }}>
       <Navbar />
       <AddModal refresh={loadOrders} />
-      <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          onChange={handleTableChange}
-          bordered
-          dataSource={displayData}
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          pagination={pagination}
-          rowKey="_id"
-          expandedRowRender={(record) => (
-            <p style={{ margin: 0 }}>{record.comment}</p>
-          )}
-          expandIcon={({ expanded, onExpand, record }) =>
-            expanded ? (
-              <CloseCircleOutlined
-                onClick={(e) => onExpand(record, e)}
-                style={{ fontSize: "22px", color: "#969696" }}
-              />
-            ) : (
-              <MessageOutlined
-                onClick={(e) => onExpand(record, e)}
-                style={{ fontSize: "22px", color: "#969696" }}
-              />
-            )
-          }
-        />
-      </Form>
+      {displayData ? (
+        <Form form={form} component={false}>
+          <Table
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            onChange={handleTableChange}
+            bordered
+            dataSource={displayData}
+            columns={mergedColumns}
+            rowClassName="editable-row"
+            pagination={pagination}
+            rowKey="_id"
+            expandedRowRender={(record) => (
+              <p style={{ margin: 0 }}>{record.comment}</p>
+            )}
+            expandIcon={({ expanded, onExpand, record }) =>
+              expanded ? (
+                <CloseCircleOutlined
+                  onClick={(e) => onExpand(record, e)}
+                  style={{ fontSize: "22px", color: "#969696" }}
+                />
+              ) : (
+                <MessageOutlined
+                  onClick={(e) => onExpand(record, e)}
+                  style={{ fontSize: "22px", color: "#969696" }}
+                />
+              )
+            }
+          />
+        </Form>
+      ) : (
+        <div style={{ padding: "50px" }}>
+          <Spin />
+        </div>
+      )}
     </div>
   );
 };

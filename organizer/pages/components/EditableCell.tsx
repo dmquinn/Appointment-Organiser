@@ -33,7 +33,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
           },
         ]}
       >
-        <Input onChange={(e) => console.log(e.target.value)} />
+        {/* <Input onChange={(e) => console.log(e.target.value)} /> */}
       </Form.Item>
     ) : editing && inputType === "datePicker" ? (
       <DatePicker />

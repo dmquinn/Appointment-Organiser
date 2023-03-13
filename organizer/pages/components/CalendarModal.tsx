@@ -27,7 +27,6 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
     setOpen(false);
   };
 
@@ -52,7 +51,6 @@ const App: React.FC<Props> = ({ open, setOpen }) => {
             }
           }}
           tileContent={({ date }) => {
-            console.log(date);
             if (
               items.orders[0].find(
                 (x: { targetDate: string }) =>

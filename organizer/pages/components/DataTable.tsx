@@ -15,14 +15,14 @@ import AddModal from "./AddModal";
 import { useDispatch } from "react-redux";
 import { setOrders } from "../../redux/ordersSlice";
 import { EditableCell } from "./EditableCell";
+import SkeletonLoader from "./SkeletonLoader";
 
 const DataTable = ({ isConnected, loadOrders }) => {
   const [displayData, setDisplayData] = useState();
   const [pagination, setPagination] = useState({});
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
-  const [expandedKey, setExpandedKey] = useState(null);
-
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const dispatch = useDispatch();
 
   // const onExpand = (_, { key }) =>
@@ -203,44 +203,34 @@ const DataTable = ({ isConnected, loadOrders }) => {
   return (
     <div style={{ padding: "50px" }}>
       <Navbar />
-      <AddModal refresh={loadOrders} />
-      {displayData ? (
-        <Form form={form} component={false}>
-          <Table
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            onChange={handleTableChange}
-            bordered
-            dataSource={displayData}
-            columns={mergedColumns}
-            rowClassName="editable-row"
-            pagination={pagination}
-            rowKey="_id"
-            expandedRowRender={(record) => (
-              <p style={{ margin: 0 }}>{record.comment}</p>
-            )}
-            expandIcon={({ expanded, onExpand, record }) =>
-              expanded ? (
-                <CloseCircleOutlined
-                  onClick={(e) => onExpand(record, e)}
-                  style={{ fontSize: "22px", color: "#969696" }}
-                />
-              ) : (
-                <MessageOutlined
-                  onClick={(e) => onExpand(record, e)}
-                  style={{ fontSize: "22px", color: "#969696" }}
-                />
-              )
-            }
-          />
-        </Form>
+      {isSignedIn ? (
+        <SkeletonLoader />
       ) : (
-        <div style={{ padding: "50px" }}>
-          <Spin />
-        </div>
+        <>
+          <AddModal refresh={loadOrders} />
+          {displayData ? (
+            <Form form={form} component={false}>
+              <Table
+                components={{
+                  body: {
+                    cell: EditableCell,
+                  },
+                }}
+                onChange={handleTableChange}
+                bordered
+                dataSource={displayData}
+                columns={mergedColumns}
+                rowClassName="editable-row"
+                pagination={pagination}
+                rowKey="_id"
+              />
+            </Form>
+          ) : (
+            <div style={{ padding: "50px" }}>
+              <Spin />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

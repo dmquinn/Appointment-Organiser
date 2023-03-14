@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import Modal from "./CalendarModal";
 import {
   CalendarOutlined,
@@ -7,20 +7,21 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import "antd/dist/reset.css";
-const SubMenu = Menu.SubMenu;
-// const MenuItemGroup = Menu.ItemGroup;
+import LoginModal from "./LoginModal";
 
 const Navbar: FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [CalendarOpen, setCalendarOpen] = useState<boolean>(false);
+  const [loginOpen, setLoginOpen] = useState<boolean>(false);
 
   return (
     <>
+      <Button onClick={() => setLoginOpen(true)}>LOGIN</Button>
       <Menu mode="horizontal">
         <h3>MUSIC REPAIR SHOP</h3>
 
         <Menu.Item key="calendar">
           <CalendarOutlined
-            onClick={() => setOpen(true)}
+            onClick={() => setCalendarOpen(true)}
             style={{
               fontSize: "30px",
               marginBottom: "30px",
@@ -33,7 +34,7 @@ const Navbar: FC = () => {
         </Menu.Item>
         <Menu.Item key="charts">
           <BarChartOutlined
-            onClick={() => setOpen(true)}
+            onClick={() => setCalendarOpen(true)}
             style={{
               fontSize: "30px",
               marginBottom: "30px",
@@ -46,7 +47,7 @@ const Navbar: FC = () => {
         </Menu.Item>
         <Menu.Item key="mail">
           <UserOutlined
-            onClick={() => setOpen(true)}
+            onClick={() => setCalendarOpen(true)}
             style={{
               fontSize: "30px",
               marginBottom: "30px",
@@ -58,7 +59,8 @@ const Navbar: FC = () => {
           />
         </Menu.Item>
       </Menu>
-      <Modal open={open} setOpen={setOpen} />
+      <LoginModal open={loginOpen} setOpen={setLoginOpen} />
+      <Modal open={CalendarOpen} setOpen={setCalendarOpen} />
     </>
   );
 };

@@ -23,9 +23,9 @@ async function handler(req, res) {
     return;
   }
 
-  const client = await clientPromise();
+  const client = await clientPromise;
 
-  const db = client.db();
+  const db = client.db("Anomic");
 
   const existingUser = await db.collection("users").findOne({ email: email });
 
@@ -42,7 +42,7 @@ async function handler(req, res) {
     password: hashedPassword,
   });
 
-  res.status(201).json({ message: "Created user!" });
+  res.status(201).json({ message: "Created user!", result });
   client.close();
 }
 

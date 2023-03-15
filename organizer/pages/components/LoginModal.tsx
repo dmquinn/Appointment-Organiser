@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, Dispatch, SetStateAction, FC } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import { Button, Form, Input, Modal } from "antd";
+import type { InputRef } from "antd";
 
-async function createUser(email, password) {
-  const response = await fetch("/api/auth/signup", {
+const createUser = async (email: string, password: string) => {
+  const response = await fetch("http://localhost:3000/api/auth/signup", {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: {
@@ -18,27 +20,34 @@ async function createUser(email, password) {
   }
 
   return data;
+};
+interface Props {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  open: boolean;
 }
-
-function AuthForm() {
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+const LoginModal: FC<Props> = ({ open, setOpen }) => {
+  const emailInputRef: any = useRef();
+  const passwordInputRef: any = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
 
-  function switchAuthModeHandler() {
+  const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
-  }
+  };
 
-  async function submitHandler(event) {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    console.log(
+      "clicked",
+      emailInputRef.current.value,
+      passwordInputRef.current.value
+    );
     //@ts-ignore
-    const enteredEmail = emailInputRef.current.value;
+    const enteredEmail: string = emailInputRef.current.value;
     //@ts-ignore
-    const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
+    const enteredPassword: string = passwordInputRef.current.value;
 
     if (isLogin) {
       const result = await signIn("credentials", {
@@ -49,44 +58,72 @@ function AuthForm() {
 
       if (!result.error) {
         // set some auth state
-        router.replace("/profile");
+        router.replace("/");
       }
     } else {
       try {
+        console.log(enteredEmail);
         const result = await createUser(enteredEmail, enteredPassword);
         console.log(result);
       } catch (error) {
         console.log(error);
       }
     }
-  }
+  };
 
   return (
-    <section>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
-        </div>
-        <div>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordInputRef}
-          />
-        </div>
-        <div>
-          <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button type="button" onClick={switchAuthModeHandler}>
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
-        </div>
-      </form>
-    </section>
-  );
-}
+    <>
+      <Modal open={open} onOk={submitHandler}>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          autoComplete="off"
+        >
+          <h4 style={{ borderBottom: "1px solid #dedede", padding: "10px" }}>
+            Login{" "}
+          </h4>
 
-export default AuthForm;
+          <Form.Item
+            label="email"
+            name="email"
+            rules={[{ required: true, message: "Please input user's email!" }]}
+          >
+            <input
+              ref={emailInputRef}
+              style={{
+                padding: "4px 11px",
+                border: "1px solid #d9d9d9",
+                borderRadius: "6px",
+                width: "100%",
+              }}
+            />
+          </Form.Item>
+          <Form.Item
+            label="password"
+            name="password"
+            rules={[{ required: true, message: "Please input password!" }]}
+          >
+            <input
+              type="password"
+              ref={passwordInputRef}
+              style={{
+                padding: "4px 11px",
+                border: "1px solid #d9d9d9",
+                borderRadius: "6px",
+                width: "100%",
+              }}
+            />
+          </Form.Item>
+          <Button onClick={switchAuthModeHandler}>
+            {isLogin ? "Create new account" : "Login with existing account"}
+          </Button>
+        </Form>{" "}
+      </Modal>
+    </>
+  );
+};
+
+export default LoginModal;
